@@ -93,15 +93,6 @@ ud = Base64(Join('\n', [
     "echo '*/10 * * * * root {}' > /etc/cron.d/ansible-pull".format(AnsiblePullCmd)
 ]))
 
-t.add_resource(ec2.Instance(
-    "instance",
-    ImageId="ami-1196317f",
-    InstanceType="t2.micro",
-    SecurityGroups=[Ref("SecurityGroup")],
-    KeyName=Ref("KeyPair"),
-    UserData=ud,
-))
-
 t.add_resource(InstanceProfile(
     "InstanceProfile",
     Path="/",
